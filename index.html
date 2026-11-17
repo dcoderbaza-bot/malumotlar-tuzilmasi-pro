@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="uz" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ma'lumotlar Tuzilmasi va Algoritmlar — Professor Konspekti & 15 Variantli Test</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=JetBrains+Mono:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- TOP NAVIGATION -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a href="#top" class="brand" id="brandHome">
+        <div class="brand-logo">CU</div>
+        <div>
+          <div class="brand-title">Cyber University</div>
+          <div class="brand-sub">Ma'lumotlar tuzilmasi va algoritmlar</div>
+        </div>
+      </a>
+
+      <nav class="nav-tabs" aria-label="Asosiy bo'limlar">
+        <button class="nav-tab active" data-tab="notes">📘 Konspekt (8 Mavzu)</button>
+        <button class="nav-tab" data-tab="lab">🧪 Laboratoriya</button>
+        <button class="nav-tab" data-tab="tests">📝 15 Variantli Test</button>
+        <button class="nav-tab" data-tab="cheat">⚡ Formulalar &amp; Big-O</button>
+      </nav>
+
+      <div class="topbar-actions">
+        <button class="icon-btn" id="themeToggle" title="Mavzuni almashtirish">🌙 Tungi</button>
+        <button class="icon-btn" id="printBtn" title="PDF / Chop etish">🖨️ Chop etish</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" id="top">
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <div class="hero-grid">
+        <div>
+          <div class="hero-badge">🎓 Cyber University • Kiberxavfsizlik kafedrasi materiallari asosida</div>
+          <h1>Ma'lumotlar Tuzilmasi va Algoritmlar — Visual Notes &amp; Test Platformasi</h1>
+          <p>
+            Katta o'qituvchi, PhD Sharofiddin Allaberdiev ma'ruzalaridagi barcha 8 ta mavzuning mag'zini rangli shakllar, xotira sxemalari, C++/Python kodlar, interaktiv simulyatorlar va 15 ta variantli (150 ta savol) test markazi bilan o'zlashtiring.
+          </p>
+          <div class="hero-actions">
+            <button class="btn-primary" data-jump="notes">📘 Konspektlarni boshlash</button>
+            <button class="btn-glass" data-jump="lab">🧪 Algoritmlarni sinash</button>
+            <button class="btn-glass" data-jump="tests">📝 15 Variantli Testga o'tish</button>
+          </div>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat-pill">
+            <strong>8 ta</strong>
+            <span>To'liq rangli mavzu konspekti</span>
+          </div>
+          <div class="stat-pill">
+            <strong>15 ta</strong>
+            <span>Tayyor imtihon varianti</span>
+          </div>
+          <div class="stat-pill">
+            <strong>150 ta</strong>
+            <span>Izohli test savollari</span>
+          </div>
+          <div class="stat-pill">
+            <strong>11+</strong>
+            <span>Jonli Qidiruv &amp; Saralash simulyatori</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 1: PROFESSOR KONSPEKTI (8 MAVZU)
+         ====================================================================== -->
+    <section id="sec-notes" class="tab-section active">
+      <div class="notes-layout">
+        <aside class="topics-sidebar">
+          <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="topicSearchInput" placeholder="Mavzu yoki kalit so'z (masalan: Heap, O(log n))...">
+          </div>
+          <div class="topic-list" id="topicList"></div>
+          <div class="progress-card">
+            <div style="display:flex; justify-content:space-between; font-size:0.84rem; font-weight:800;">
+              <span>🎓 O'zlashtirish jarayoni</span>
+              <span id="progressCount">0 / 8</span>
+            </div>
+            <div class="progress-bar-wrap">
+              <div class="progress-bar-fill" id="progressBarFill" style="width:0%"></div>
+            </div>
+            <small style="color:var(--text-soft); font-size:0.76rem;">Har bir mavzuni o'qib bo'lgach, pastdagi "O'zlashtirdim ✓" tugmasini bosing.</small>
+          </div>
+        </aside>
+
+        <article class="lecture-sheet" id="lectureSheet"></article>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 2: INTERAKTIV ALGORITM LABORATORIYASI
+         ====================================================================== -->
+    <section id="sec-lab" class="tab-section">
+      <div class="lab-grid">
+        <!-- Searching Lab -->
+        <div class="lab-card col-6">
+          <div class="note-card-head">
+            <h3 class="note-card-title">🔎 Qidiruv Algoritmlari Simulyatori</h3>
+            <span class="note-tag" style="background:var(--teal-soft); color:var(--teal);">05-Mavzu</span>
+          </div>
+          <p style="font-size:0.88rem; color:var(--text-muted); margin-top:0;">Massivda Linear, Binary va Jump Search algoritmlari qanday qadam tashlashini jonli kuzating.</p>
+          <div class="lab-controls">
+            <select id="searchAlgoSelect">
+              <option value="linear">Linear Search — O(n)</option>
+              <option value="binary">Binary Search — O(log n)</option>
+              <option value="jump">Jump Search — O(√n)</option>
+            </select>
+            <input type="number" id="searchTargetInput" value="23" style="width:95px;" title="Qidirilayotgan son">
+            <button class="btn-primary" id="runSearchSimBtn">▶ Qidirish</button>
+            <button class="btn-outline" id="resetSearchSimBtn">↻ Yangi massiv</button>
+          </div>
+          <div class="sim-stage">
+            <div class="array-visual" id="searchSimArray"></div>
+            <div class="sim-log" id="searchSimLog">Algoritmni tanlang va "▶ Qidirish" tugmasini bosing.</div>
+          </div>
+        </div>
+
+        <!-- Sorting Lab -->
+        <div class="lab-card col-6">
+          <div class="note-card-head">
+            <h3 class="note-card-title">📊 Saralash Algoritmlari Simulyatori</h3>
+            <span class="note-tag" style="background:var(--indigo-soft); color:var(--indigo);">06 &amp; 07-Mavzu</span>
+          </div>
+          <p style="font-size:0.88rem; color:var(--text-muted); margin-top:0;">Taqqoslash va almashtirish jarayonini ustunlar animatsiyasi orqali real vaqtda ko'ring.</p>
+          <div class="lab-controls">
+            <select id="sortAlgoSelect">
+              <option value="bubble">Bubble Sort (Pufakcha)</option>
+              <option value="selection">Selection Sort (Tanlash)</option>
+              <option value="insertion">Insertion Sort (Qo'yish)</option>
+              <option value="cocktail">Cocktail / Sheyker Sort</option>
+              <option value="shell">Shell Sort</option>
+              <option value="merge">Merge Sort (Divide &amp; Conquer)</option>
+              <option value="quick">Quick Sort (Pivot)</option>
+              <option value="heap">Heap Sort (Max Heap)</option>
+            </select>
+            <button class="btn-primary" id="runSortSimBtn">▶ Saralash</button>
+            <button class="btn-outline" id="shuffleSortSimBtn">🎲 Aralashtirish</button>
+          </div>
+          <div class="sim-stage">
+            <div class="sim-bars" id="sortSimBars"></div>
+            <div class="sim-log" id="sortSimLog">Saralash algoritmini tanlang va "▶ Saralash" tugmasini bosing.</div>
+          </div>
+        </div>
+
+        <!-- Recursion & Call Stack Simulator -->
+        <div class="lab-card col-6">
+          <div class="note-card-head">
+            <h3 class="note-card-title">📚 Call Stack &amp; Rekursiya Simulyatori</h3>
+            <span class="note-tag" style="background:var(--violet-soft); color:var(--violet);">04-Mavzu</span>
+          </div>
+          <p style="font-size:0.88rem; color:var(--text-muted); margin-top:0;"><code>factorial(n)</code> va <code>fib(n)</code> funksiyalarida Stack Frame lar qanday ochilib yopilishini ko'ring.</p>
+          <div class="lab-controls">
+            <select id="recTypeSelect">
+              <option value="fact">factorial(n) — Chiziqli rekursiya</option>
+              <option value="fib">fib(n) — Daraxtsimon rekursiya</option>
+            </select>
+            <input type="number" id="recNInput" value="4" min="1" max="6" style="width:80px;">
+            <button class="btn-primary" id="runRecSimBtn">▶ Hisoblash</button>
+          </div>
+          <div class="sim-stage">
+            <div id="recSimOutput" style="font-size:0.88rem;"></div>
+          </div>
+        </div>
+
+        <!-- Big-O Interactive Calculator -->
+        <div class="lab-card col-6">
+          <div class="note-card-head">
+            <h3 class="note-card-title">📈 Big-O Amallar Soni Kalkulyatori</h3>
+            <span class="note-tag" style="background:var(--rose-soft); color:var(--rose);">08-Mavzu</span>
+          </div>
+          <p style="font-size:0.88rem; color:var(--text-muted); margin-top:0;">Kirish hajmi <code>n</code> ni o'zgartirib, 7 ta Big-O sinfida amallar soni qanday sakrashini solishtiring.</p>
+          <div class="lab-controls">
+            <label for="bigONRange" style="font-weight:700;">n = <span id="bigONVal">16</span></label>
+            <input type="range" id="bigONRange" min="1" max="50" value="16" style="flex:1;">
+          </div>
+          <div id="bigOCalcTable"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 3: 15 VARIANTLI TEST VA IMTIHON MARKAZI
+         ====================================================================== -->
+    <section id="sec-tests" class="tab-section">
+      <div class="test-toolbar">
+        <div>
+          <h2 style="margin:0; font-size:1.25rem;">📝 Barcha 8 Mavzu Bo'yicha 15 ta Test Varianti (150 ta savol)</h2>
+          <span style="font-size:0.84rem; color:var(--text-soft);">Istalgan variantni tanlang: O'quv rejimida javob va professor izohini darhol ko'rasiz, Imtihon rejimida esa ball olasiz.</span>
+        </div>
+        <div class="mode-pills">
+          <button class="mode-pill active" data-testmode="study">💡 O'quv rejimi</button>
+          <button class="mode-pill" data-testmode="exam">⏱️ Imtihon rejimi</button>
+          <button class="mode-pill" data-testmode="all">📚 Barcha 15 Variant + Kalit</button>
+        </div>
+      </div>
+
+      <div class="variants-grid" id="variantsGrid"></div>
+
+      <div id="testWorkspace"></div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 4: CHEAT SHEET (TEZKOR FORMULALAR & BIG-O)
+         ====================================================================== -->
+    <section id="sec-cheat" class="tab-section">
+      <div class="cheat-grid">
+        <div class="note-card accent-indigo">
+          <div class="note-card-head"><h3 class="note-card-title">🧩 Asosiy Formulalar</h3><span class="note-tag">01-02 Mavzu</span></div>
+          <ul>
+            <li><strong>Ma'lumot</strong> = Axborot + Shakl</li>
+            <li><strong>MT Modeli:</strong> <code>S = { D, R }</code>, <code>R = (Tartib, Amallar)</code></li>
+            <li><strong>Dastur</strong> = Algoritm + Ma'lumotlar</li>
+            <li><strong>Ishorasiz int:</strong> <code>0 .. 2<sup>N</sup> - 1</code></li>
+            <li><strong>Ishorali int:</strong> <code>-2<sup>N-1</sup> .. 2<sup>N-1</sup> - 1</code></li>
+            <li><strong>Haqiqiy son:</strong> <code>x = ±M · q<sup>±P</sup></code></li>
+            <li><strong>CRUD:</strong> Create, Read, Update, Delete</li>
+          </ul>
+        </div>
+
+        <div class="note-card accent-emerald">
+          <div class="note-card-head"><h3 class="note-card-title">💾 Xotira va C++ Turlari</h3><span class="note-tag">02-03 Mavzu</span></div>
+          <ul>
+            <li><strong>Xotira qatlamlari:</strong> Heap (dinamik) → Stack (lokal/rekursiya) → Global/Static → Program Code</li>
+            <li><strong>Baytlar:</strong> <code>char=1</code>, <code>bool=1</code>, <code>int=2/4</code>, <code>float=4</code>, <code>double=8</code>, <code>pointer=4/8</code></li>
+            <li><strong>Dinamik massiv:</strong> <code>int *a = new int[n];</code> → <code>delete [] a;</code></li>
+            <li><strong>STL:</strong> Konteynerlar + Algoritmlar + Iteratorlar (5 tur)</li>
+            <li><strong>clear():</strong> <code>array</code> dan tashqari barcha STL konteynerlarda bor</li>
+          </ul>
+        </div>
+
+        <div class="note-card accent-teal">
+          <div class="note-card-head"><h3 class="note-card-title">🔎 Qidiruv Murakkabliklari</h3><span class="note-tag">05-Mavzu</span></div>
+          <ul>
+            <li><strong>Linear Search:</strong> <code>O(n)</code> — tartib shart emas</li>
+            <li><strong>Jump Search:</strong> <code>O(√n)</code> — tartiblangan massiv, <code>qadam = ⌊√n⌋</code></li>
+            <li><strong>Binary Search:</strong> <code>O(log n)</code> — faqat tartiblangan massiv!</li>
+            <li><strong>Hash Search:</strong> <code>O(1)</code> o'rtacha — Xesh jadval / Python <code>dict</code></li>
+            <li><strong>Adjacency Matrix:</strong> Qirra tekshirish <code>O(1)</code>, Xotira <code>O(V²)</code></li>
+          </ul>
+        </div>
+
+        <div class="note-card accent-rose">
+          <div class="note-card-head"><h3 class="note-card-title">⚡ Saralash &amp; Big-O Zinapoyasi</h3><span class="note-tag">06-08 Mavzu</span></div>
+          <ul>
+            <li><strong>Best → Worst:</strong> <code>O(1) → O(log n) → O(n) → O(n log n) → O(n²) → O(2ⁿ) → O(n!)</code></li>
+            <li><strong>Stable O(n²):</strong> Bubble Sort, Insertion Sort</li>
+            <li><strong>Unstable O(n²):</strong> Selection Sort, Pancake Sort</li>
+            <li><strong>O(n log n):</strong> Merge Sort (Space <code>O(n)</code>), Heap Sort (Space <code>O(1)</code>), Quick Sort (Worst <code>O(n²)</code>, Space <code>O(log n)</code>)</li>
+            <li><strong>Non-Comparison:</strong> Counting Sort, Radix Sort</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <strong>Cyber University • "Ma'lumotlar tuzilmasi va algoritmlari" fani</strong> — PhD Sharofiddin Allaberdiev ma'ruzalari asosida tayyorlangan Visual Study Notes &amp; 15 Variantli Test Platformasi.
+  </footer>
+
+  <script src="lectures-data.js"></script>
+  <script src="tests-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
