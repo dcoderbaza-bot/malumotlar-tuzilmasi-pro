@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
     examSubmitted: {}, // { variantNum: true/false }
     examSeconds: 0,
     examTimerId: null,
-    examScores: JSON.parse(localStorage.getItem("cu_exam_scores") || "{}"),
+    examScores: JSON.parse(localStorage.getItem("cu_exam_scores_v2") || "{}"),
     showAllKeys: true
   };
 
@@ -659,10 +659,11 @@ document.addEventListener("DOMContentLoaded", () => {
       .map(v => {
         const isActive = v.variant === state.activeVariant;
         const best = state.examScores[v.variant];
+        const qCount = v.questions.length;
         return `
           <button class="variant-card ${isActive ? "active" : ""}" data-variant="${v.variant}">
             <span class="variant-num">${v.variant}-Variant</span>
-            <span class="variant-status">10 savol • ${best !== undefined ? `Natija: ${best}/10 ✅` : "Yechilmagan"}</span>
+            <span class="variant-status">${qCount} savol • ${best !== undefined ? `Natija: ${best}/${qCount} ✅` : "Yechilmagan"}</span>
           </button>
         `;
       })
@@ -682,6 +683,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  function formatQuestionHtml(qStr) {
+    return qStr
+      .split(/(<pre>[\s\S]*?<\/pre>)/g)
+      .map(part => (part.startsWith("<pre>") ? part : escapeHtml(part)))
+      .join("");
+  }
+
   function renderQuestionCard(qObj, qIdx, mode, userAns, isSubmitted) {
     const showResult = (mode === "study" && userAns !== undefined) || (mode === "exam" && isSubmitted) || (mode === "all" && state.showAllKeys);
     const isCorrect = userAns === qObj.answer;
@@ -690,9 +698,9 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="question-card" data-qidx="${qIdx}">
         <div class="question-head">
           <span class="q-num">${qIdx + 1}-savol</span>
-          <span class="q-topic-tag">${qObj.topic}</span>
+          <span class="q-topic-tag">${escapeHtml(qObj.topic)}</span>
         </div>
-        <div class="q-text">${qObj.q}</div>
+        <div class="q-text">${formatQuestionHtml(qObj.q)}</div>
         <div class="options-list">
           ${qObj.options
             .map((opt, optIdx) => {
@@ -707,7 +715,7 @@ document.addEventListener("DOMContentLoaded", () => {
               return `
                 <button class="option-btn ${cls}" data-q="${qIdx}" data-opt="${optIdx}" ${disabled ? "disabled" : ""}>
                   <span class="opt-letter">${letters[optIdx]}</span>
-                  <span>${opt}</span>
+                  <span>${escapeHtml(opt)}</span>
                 </button>
               `;
             })
@@ -717,7 +725,7 @@ document.addEventListener("DOMContentLoaded", () => {
           showResult
             ? `<div class="q-explanation ${userAns !== undefined && !isCorrect ? "wrong-exp" : ""}">
                  <strong>${mode === "all" ? `✅ To'g'ri javob: ${letters[qObj.answer]}.` : isCorrect ? "✅ To'g'ri!" : `❌ Noto'g'ri! To'g'ri javob: ${letters[qObj.answer]}.`}</strong>
-                 ${qObj.exp}
+                 ${escapeHtml(qObj.exp)}
                </div>`
             : ""
         }
@@ -731,10 +739,11 @@ document.addEventListener("DOMContentLoaded", () => {
     // Mode 3: All 15 variants view
     if (state.testMode === "all") {
       stopExamTimer();
+      const totalAllQ = tests.reduce((sum, v) => sum + v.questions.length, 0);
       testWorkspaceEl.innerHTML = `
         <div class="test-toolbar">
           <div>
-            <strong>📚 Barcha 15 ta Variant (150 ta savol) — To'liq To'plam</strong><br>
+            <strong>📚 Barcha ${tests.length} ta Variant (${totalAllQ} ta savol) — To'liq To'plam</strong><br>
             <small style="color:var(--text-soft);">Chop etish (Print/PDF) yoki javoblar kalitini yashirib mustaqil mashq qilish mumkin.</small>
           </div>
           <div style="display:flex; gap:10px; flex-wrap:wrap;">
@@ -846,7 +855,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const curAns = state.examAnswers[vNum] || {};
       vObj.questions.forEach((q, i) => { if (curAns[i] === q.answer) score++; });
       state.examScores[vNum] = score;
-      localStorage.setItem("cu_exam_scores", JSON.stringify(state.examScores));
+      localStorage.setItem("cu_exam_scores_v2", JSON.stringify(state.examScores));
       renderVariantsGrid();
       renderTestWorkspace();
       testWorkspaceEl.scrollIntoView({ behavior: "smooth", block: "start" });

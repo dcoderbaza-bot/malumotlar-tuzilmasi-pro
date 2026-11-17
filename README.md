@@ -1,6 +1,6 @@
 # Cyber University — Ma'lumotlar Tuzilmasi va Algoritmlar
 
-PhD **Sharofiddin Allaberdiev** ma'ruzalari asosida yaratilgan **"Visual Study Notes"** uslubidagi rangli professor konspekti, interaktiv algoritm laboratoriyasi va **15 ta variantli (150 ta savol)** test web-platformasi.
+PhD **Sharofiddin Allaberdiev** ma'ruzalari asosida yaratilgan **"Visual Study Notes"** uslubidagi rangli professor konspekti, interaktiv algoritm laboratoriyasi va **15 ta variantli (har biri 25 savoldan — 375 ta savol)** test web-platformasi.
 
 ## Bo'limlar
 
@@ -21,7 +21,7 @@ PhD **Sharofiddin Allaberdiev** ma'ruzalari asosida yaratilgan **"Visual Study N
    - `Big-O` amallar soni kalkulyatori
 
 3. **📝 15 Variantli Test va Imtihon Markazi:**
-   - Har biri 10 ta savoldan iborat **15 ta variant** (jami **150 ta savol**)
+   - Har biri 25 ta savoldan iborat **15 ta variant** (jami **375 ta savol**, o'xshash va chalg'ituvchi javob variantlari bilan)
    - 3 ta rejim: **O'quv rejimi** (darhol izoh bilan), **Imtihon rejimi** (taymer + baho), **Barcha 15 Variant + Kalit**
 
 4. **⚡ Tezkor Formulalar & Big-O Cheat Sheet**
